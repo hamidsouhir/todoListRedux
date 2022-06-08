@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Modal from 'react-modal';
+import { useDispatch } from 'react-redux';
+import { editTask } from '../redux/action';
 
 
 const customStyles = {
@@ -13,10 +15,12 @@ const customStyles = {
     },
   };
   
-  // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
+  
   Modal.setAppElement('#root');
-const EditTask = () => {
+const EditTask = ({el}) => {
     const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [newText, setNewText] = useState(el.description)
+    const dispatch=useDispatch()
 
   function openModal() {
     setIsOpen(true);
@@ -24,9 +28,19 @@ const EditTask = () => {
   function closeModal() {
     setIsOpen(false);
   }
+  const handleSubmit=(e)=>{
+       e.preventDefault();
+    const newTask={
+      id:el.id,
+      description:newText,
+      completed:el.completed
+    }
+    dispatch(editTask(newTask))
+    closeModal()
+  }
 
   return (
-    <div>
+    <div className='mod'>
 <button onClick={openModal}>Edit Task</button>
       <Modal
         isOpen={modalIsOpen}
@@ -36,9 +50,9 @@ const EditTask = () => {
         contentLabel="Example Modal"
       >
         <h2>Edit Task</h2>
-        <form>
-          <input />
-          <button>Confirmer</button>
+        <form onSubmit={handleSubmit}>
+          <input  value={newText} onChange={(e)=>setNewText(e.target.value)}/>
+          <button >Confirmer</button>
           <button onClick={closeModal}>Cancel</button>
         </form>
       </Modal>

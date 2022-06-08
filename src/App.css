@@ -1,5 +1,17 @@
+*{
+  margin: 10;
+	box-sizing: border-box;
+	font-family: "Fira sans", sans-serif;
+  padding: 5px;
+  background-color: #464a52;
+ font-size: large;
+ color: blanchedalmond
+}
+ 
+
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -12,6 +24,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
 
 .App-header {
   background-color: #282c34;
@@ -35,4 +48,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+.done{
+  text-decoration: line-through;
+}
+button{
+  background-color: rgb(50, 52, 51);
 }

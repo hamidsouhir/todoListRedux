@@ -1,5 +1,5 @@
 import EditTask from "../components/EditTask"
-import { ADDTASK, EDITTASK } from "./typeAction"
+import { ADDTASK, COMPLETE, DELETE, EDITTASK, FILTRED } from "./typeAction"
 
 
 
@@ -9,9 +9,28 @@ export const add =(newTask)=>{
     payload:newTask
 }
 }
-export const editTask=(id)=>{
+export const editTask=(tasktodo)=>{
     return{
         type:EDITTASK,
+        payload:tasktodo
+    }
+}
+
+export const del =(id)=>{
+    return {
+        type :DELETE,
         payload:id
+    }
+}
+
+export const com = (id) =>{
+    return {
+        type :COMPLETE,
+        payload: id
+    }
+}
+export const filt =()=>{
+    return{
+    type: FILTRED
     }
 }
